@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation(libs.firebase.database.ktx)
     val navversion = "2.9.1"
 
     // Jetpack Compose integration

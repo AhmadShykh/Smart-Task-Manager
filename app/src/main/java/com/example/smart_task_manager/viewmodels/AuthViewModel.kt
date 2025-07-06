@@ -2,6 +2,7 @@ package com.example.smart_task_manager.viewmodels
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 
 
@@ -27,6 +28,14 @@ class AuthViewModel : androidx.lifecycle.ViewModel() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) onResult(true, "")
             else onResult(false, task.exception?.message ?: "Signup failed")
+        }
+    }
+
+    fun signInWithGoogle(idToken: String, onResult: (Boolean, String) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) onResult(true, "")
+            else onResult(false, task.exception?.message ?: "Google Sign-In failed")
         }
     }
 }
