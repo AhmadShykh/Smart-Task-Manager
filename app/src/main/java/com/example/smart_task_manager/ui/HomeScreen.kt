@@ -48,7 +48,7 @@ fun HomeScreen(
                         navController.navigate("login") {
                             popUpTo("home") { inclusive = true }
                         } }) {
-                        Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Logout", tint = Color.White)
+                        Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Logout", tint = Color.Red)
                     }
                 }
             )

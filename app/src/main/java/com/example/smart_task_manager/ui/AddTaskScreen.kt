@@ -153,6 +153,13 @@ fun AddEditTaskScreen(
                     }
 
                     if (success) {
+
+                        viewModel.scheduleTaskNotification(
+                            context = context,
+                            taskId = taskId.ifEmpty { System.currentTimeMillis().toString() },
+                            title = taskTitle,
+                            deadline = selectedDateTime
+                        )
                         navController.navigate("home") {
                             popUpTo("home") { inclusive = true }
                         }
@@ -161,12 +168,7 @@ fun AddEditTaskScreen(
                         errorMessage = "Please fill in all fields."
                     }
 
-                    viewModel.scheduleTaskNotification(
-                        context = context,
-                        taskId = taskId.ifEmpty { System.currentTimeMillis().toString() },
-                        title = taskTitle,
-                        deadline = selectedDateTime
-                    )
+
                 }) {
                     Text("Save")
                 }
